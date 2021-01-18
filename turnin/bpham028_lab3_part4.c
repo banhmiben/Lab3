@@ -14,31 +14,18 @@
 
 int main(void) {
     /* Insert DDR and PORT initializations */
+	DDRA = 0x00; PORTA = 0xFF;
+	DDRB = 0xFF; PORTB = 0x00;
+	DDRC = 0xFF; PORTC = 0x00;
 	
-	DDRB = 0x01; PORTB = 0xFF;
-	DDRD = 0x00; PORTD = 0xFF;
-
-	unsigned tmpB = 0x00;
-	unsigned tmpD = 0x00;
-	unsigned short totWeight = 0x00;
+	unsigned tmpA = 0x00;
 
     /* Insert your solution below */
     while (1) {
-	
-	tmpB = PINB;
-	tmpD = PIND;
-	totWeight = (tmpD << 1) | (tmpB & 0x01);
-
-	if (totWeight >= 0x0046) {
-		tmpB = 0x02;
-	} else if ((totWeight > 0x0005) && (totWeight < 70)) {
-		tmpB = 0x04;
-	} else {
-		tmpB = 0x00;
-	}
-
-	PORTB = tmpB;
-	
+		
+	tmpA = PINA;
+	PORTB = (tmpA >> 4) & 0x0F;
+	PORTC = (tmpA << 4) & 0xF0;
 
     }
     return 1;
