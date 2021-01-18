@@ -15,25 +15,22 @@
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
 tests = [ {'description': 'This test will run first.',
-    'steps': [ {'inputs': [('PINB',0x00), ('PIND', 0x00)], 'iterations': 5 } ],
-    'expected': [('PORTB', 0x00)],
+    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 5 } ],
+    'expected': [('PORTB', 0x00), ('PORTC',0x00)],
     },
     {'description': 'This test will run first.',
-    'steps': [ {'inputs': [('PINB',0x01), ('PIND', 0xFF)], 'iterations': 5 } ],
-    'expected': [('PORTB', 0x02)],
+    'steps': [ {'inputs': [('PINA',0x42)], 'iterations': 5 } ],
+    'expected': [('PORTB', 0x04), ('PORTC',0x20)],
     },
     {'description': 'This test will run first.',
-    'steps': [ {'inputs': [('PINB',0x00), ('PIND', 0x0F)], 'iterations': 5 } ],
-    'expected': [('PORTB', 0x04)],
+    'steps': [ {'inputs': [('PINA',0xA5)], 'iterations': 5 } ],
+    'expected': [('PORTB', 0x0A), ('PORTC',0x50)],
     },
     {'description': 'This test will run first.',
-    'steps': [ {'inputs': [('PINB',0x00), ('PIND', 0x00)], 'iterations': 5 } ],
-    'expected': [('PORTB', 0x00)],
+    'steps': [ {'inputs': [('PINA',0xFF)], 'iterations': 5 } ],
+    'expected': [('PORTB', 0x0F), ('PORTC',0xF0)],
     },
-    {'description': 'This test will run first.',
-    'steps': [ {'inputs': [('PINB',0x01), ('PIND', 0x00], 'iterations': 5 } ],
-    'expected': [('PORTB', 0x00)],
-    },
+
     ]
 
 # Optionally you can add a set of "watch" variables these need to be global or static and may need
